@@ -1,9 +1,9 @@
 "use client";
 
-import { FC, ReactNode, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import {motion, useScroll, useTransform} from "framer-motion";
+import {FC, ReactNode, useRef} from "react";
 
-import { cn } from "@/lib/utils";
+import {cn} from "@/lib/utils";
 
 interface TextRevealByWordProps {
   text: string;
@@ -16,7 +16,7 @@ export const TextRevealByWord: FC<TextRevealByWordProps> = ({
 }) => {
   const targetRef = useRef<HTMLDivElement | null>(null);
 
-  const { scrollYProgress } = useScroll({
+  const {scrollYProgress} = useScroll({
     target: targetRef,
   });
   const words = text.split(" ");
@@ -51,17 +51,18 @@ export const TextRevealByWord: FC<TextRevealByWordProps> = ({
 
 interface WordProps {
   children: ReactNode;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   progress: any;
   range: [number, number];
 }
 
-const Word: FC<WordProps> = ({ children, progress, range }) => {
+const Word: FC<WordProps> = ({children, progress, range}) => {
   const opacity = useTransform(progress, range, [0, 1]);
   return (
     <span className="xl:lg-3 relative mx-1 lg:mx-2.5">
       <span className={"absolute opacity-30"}>{children}</span>
       <motion.span
-        style={{ opacity: opacity }}
+        style={{opacity: opacity}}
         className={"text-black dark:text-white"}
       >
         {children}
